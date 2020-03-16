@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-// const Beaches = require('../models/beaches.js')
+const Beaches = require('../models/beaches.js')
 
 
 
