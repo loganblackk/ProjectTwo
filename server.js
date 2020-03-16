@@ -5,6 +5,7 @@ require('dotenv').config();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
+const mongoURI = process.env.MONGODB_URI
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
