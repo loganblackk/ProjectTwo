@@ -86,8 +86,6 @@ Beaches.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBeac
 })
 
 
-module.exports = router;
-
 
 //listen for requests
 app.listen(process.env.PORT, () => {
