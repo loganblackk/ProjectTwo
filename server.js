@@ -28,7 +28,7 @@ db.on('open', () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('your application is working');
+    res.render('index.ejs');
 });
 
 
