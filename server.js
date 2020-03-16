@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise
 const db = mongoose.connection;
 const beachesController = require('./controllers/beachesController.js')
 
