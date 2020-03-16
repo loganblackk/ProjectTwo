@@ -32,8 +32,10 @@ db.on('open', () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('your application is working');
+    res.render('/server.js');
 });
+
+app.locals.config = require('./config')
 
 mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
     console.log('The connection with mongod is established');
