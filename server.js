@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-
+const PORT= process.env.PORT || 5000;
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
