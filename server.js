@@ -12,9 +12,6 @@ app.use(methodOverride('_method'));
 const beachesController = require('./controllers/beachesController.js')
 app.use('/beaches', beachesController)
 
-// router.get('/beachesController', (req, res)=>{
-//   res.render('new.ejs');
-// });
 
 const dbupdateobject = {
   useNewUrlParser: true,
@@ -30,15 +27,10 @@ db.on('open', () => {
     console.log('Connection made!');
 });
 
-// app.get('/', (req, res) => {
-//     res.render('/server.js');
-// });
-
-// app.locals.config = require('./config')
-
-mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
-    console.log('The connection with mongod is established');
+app.get('/', (req, res) => {
+    res.send('your application is working');
 });
+
 
 //listen for requests
 app.listen(process.env.PORT, () => {
