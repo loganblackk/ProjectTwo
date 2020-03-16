@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Show</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <h1> Beach Info</h1>
+        <img class="show-img" src="<%=beaches.img%>" alt="<%=beaches.name%>" style="max-width: 400px"></br>
+      
+        The beaches of <%=beaches.name%> are <%=beaches.description%></br></br>
+
+        <li>Location: <%=beaches.location%></li>
+        <li>Do you want to visit <%=beaches.name%>?</li>
+
+        <li>
+          <% if (beaches.qty > 0) { %>
+            Number of People: <%=beaches.qty%>
+          <% } else { %>
+           No more room
+          <% } %>
+          <br/>
+          <a class="button" href="/beaches/<%=beaches.id%>/edit">Edit</a>
+
+        </li>
+        <% if (beaches.qty > 0) { %>
+          <form action="/beaches/<%=beaches._id%>/qty?_method=PUT" method="POST">
+            <input type="submit" value="Buy a ticket">
+          </form>
+      <% } %>
+      <form action="/beaches/<%=beaches._id%>?_method=DELETE" method="POST">
+        <input type="submit" value="delete">
+        <a class='button' href="/beaches">Back to Beaches Page</a>
+    </div>
+</body>
+
+</html>

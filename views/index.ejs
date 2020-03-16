@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Beaches</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+</head>
+
+<body>
+    <h1>Best Beaches in the world</h1>
+    <div class="container">
+        <ul>
+            <% for(let i=0; i < beaches.length; i++) { %>
+            <li>          
+                <a href='/beaches/<%=beaches[i].id%>'>
+                <%=beaches[i].name%></br>
+                <img src='<%=beaches[i].img%>' style="max-width: 400px" /></a></br>
+              Description: <%=beaches[i].description%> </li>
+              Number of People: <%=beaches[i].qty%> </li>
+              <% } %>
+
+        </ul>
+
+
+        <nav>
+            <a href="/beaches/new" class="button">Add a new Beach</a>
+            
+        </nav>
+    </div>
+
+</body>
+
+</html>
