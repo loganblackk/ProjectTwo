@@ -10,7 +10,7 @@ app.use(methodOverride('_method'));
 
 
 const beachesController = require('./controllers/beachesController.js')
-app.use('/beaches', beachesController)
+app.use(beachesController)
 
 
 const dbupdateobject = {
