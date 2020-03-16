@@ -7,7 +7,7 @@ const db = mongoose.connection;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
+app.use(express.json());
 
 const beachesController = require('./controllers/beachesController.js')
 app.use('/beaches', beachesController)
@@ -28,7 +28,7 @@ db.on('open', () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('your application is working');
+    res.render('index.ejs', {});
 });
 
 
