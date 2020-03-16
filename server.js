@@ -10,8 +10,8 @@ app.use(methodOverride('_method'));
 
 
 const beachesController = require('./controllers/beachesController.js')
-app.use(beachesController)
 app.use('/beaches', beachesController)
+
 
 const dbupdateobject = {
   useNewUrlParser: true,
