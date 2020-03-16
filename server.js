@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
 require('dotenv').config();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
@@ -13,9 +12,9 @@ app.use(methodOverride('_method'));
 const beachesController = require('./controllers/beachesController.js')
 app.use('/beaches', beachesController)
 
-router.get('/beachesController', (req, res)=>{
-  res.render('new.ejs');
-});
+// router.get('/beachesController', (req, res)=>{
+//   res.render('new.ejs');
+// });
 
 const dbupdateobject = {
   useNewUrlParser: true,
@@ -31,11 +30,11 @@ db.on('open', () => {
     console.log('Connection made!');
 });
 
-app.get('/', (req, res) => {
-    res.render('/server.js');
-});
+// app.get('/', (req, res) => {
+//     res.render('/server.js');
+// });
 
-app.locals.config = require('./config')
+// app.locals.config = require('./config')
 
 mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
     console.log('The connection with mongod is established');
