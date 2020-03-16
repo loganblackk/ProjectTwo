@@ -7,11 +7,11 @@ const db = mongoose.connection;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(express.json());
+
 
 const beachesController = require('./controllers/beachesController.js')
+app.use(beachesController)
 app.use('/beaches', beachesController)
-
 
 const dbupdateobject = {
   useNewUrlParser: true,
@@ -28,7 +28,7 @@ db.on('open', () => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index.ejs', {});
+    res.send('your application is working');
 });
 
 
@@ -37,9 +37,9 @@ app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`)})
 
   
-mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
-  console.log('The connection with mongod is established')
-})
+// mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
+//   console.log('The connection with mongod is established')
+// })
 
 
 
