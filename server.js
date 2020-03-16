@@ -4,14 +4,11 @@ require('dotenv').config();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
+const beachesController = require('./controllers/beachesController.js')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
-
-const beachesController = require('./controllers/beachesController.js')
 app.use('/beaches', beachesController)
-
 
 const dbupdateobject = {
   useNewUrlParser: true,
@@ -27,8 +24,27 @@ db.on('open', () => {
     console.log('Connection made!');
 });
 
-app.get('/beaches', (req, res) => {
-    res.send('your application is working');
+// app.get('/beaches', (req, res) => {
+//     res.send('your application is working');
+// });
+
+app.put('/:id', (req, res) => {
+  Beaches.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBeaches) => {
+    res.redirect(`/beaches/${req.params.id}`)
+  });
+  })
+  
+// *edit route
+app.get('/beaches/:id/edit', (req, res) => {
+  Beaches.findById(req.params.id, (err, items) => {
+    res.render('edit.ejs', { beaches: items });
+  });
+});
+//*remove route
+app.delete('/beaches/:id', (req, res) => {
+  Beaches.findByIdAndRemove(req.params.id, (err, data) => {
+    res.redirect('/beaches');
+  });
 });
 //*New route
 app.get('/beaches/new', (req, res) => {
@@ -49,12 +65,7 @@ app.get('/beaches', (req, res) => {
   })
 }) 
 
-// *edit route
-app.get('/beaches/:id/edit', (req, res) => {
-  Beaches.findById(req.params.id, (err, items) => {
-    res.render('edit.ejs', { beaches: items });
-  });
-});
+
 
 //* created route
 app.post('/beaches/', (req, res) => {
@@ -63,12 +74,7 @@ Beaches.create(req.body, (error, createdBeach) => {
   })
 })
 
-//*remove route
-app.delete('/beaches/:id', (req, res) => {
-Beaches.findByIdAndRemove(req.params.id, (err, data) => {
-  res.redirect('/beaches');
-});
-});
+
 
 //*edit qty route
 app.put('/:id/qty', (req, res) => {
@@ -79,11 +85,6 @@ app.put('/:id/qty', (req, res) => {
 });
 
 
-app.put('/:id', (req, res) => {
-Beaches.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBeaches) => {
-  res.redirect(`/beaches/${req.params.id}`)
-});
-})
 
 
 
