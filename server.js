@@ -27,44 +27,44 @@ db.on('open', () => {
     console.log('Connection made!');
 });
 
-app.get('/', (req, res) => {
+app.get('/beaches', (req, res) => {
     res.send('your application is working');
 });
 //*New route
-app.get('/new', (req, res) => {
+app.get('/beaches/new', (req, res) => {
   res.render('new.ejs')
 })
 
 //*show route
-app.get('/:id', (req, res) => {
+app.get('/beaches/:id', (req, res) => {
   Beaches.findById(req.params.id, (error, item) => {
     res.render('show.ejs', { beaches: item })
   })
 })
 
 //*Index route
-app.get('/', (req, res) => {
+app.get('/beaches', (req, res) => {
   Beaches.find({}, (error, items) => {
     res.render('index.ejs', { beaches: items })
   })
 }) 
 
 // *edit route
-app.get('/:id/edit', (req, res) => {
+app.get('/beaches/:id/edit', (req, res) => {
   Beaches.findById(req.params.id, (err, items) => {
     res.render('edit.ejs', { beaches: items });
   });
 });
 
 //* created route
-app.post('/', (req, res) => {
+app.post('/beaches/', (req, res) => {
 Beaches.create(req.body, (error, createdBeach) => {
     res.redirect('/beaches');
   })
 })
 
 //*remove route
-app.delete('/:id', (req, res) => {
+app.delete('/beaches/:id', (req, res) => {
 Beaches.findByIdAndRemove(req.params.id, (err, data) => {
   res.redirect('/beaches');
 });
