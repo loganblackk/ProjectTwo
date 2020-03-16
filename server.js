@@ -30,6 +30,63 @@ db.on('open', () => {
 app.get('/', (req, res) => {
     res.send('your application is working');
 });
+//*New route
+app.get('/new', (req, res) => {
+  res.render('new.ejs')
+})
+
+//*show route
+app.get('/:id', (req, res) => {
+  Beaches.findById(req.params.id, (error, item) => {
+    res.render('show.ejs', { beaches: item })
+  })
+})
+
+//*Index route
+app.get('/', (req, res) => {
+  Beaches.find({}, (error, items) => {
+    res.render('index.ejs', { beaches: items })
+  })
+}) 
+
+// *edit route
+app.get('/:id/edit', (req, res) => {
+  Beaches.findById(req.params.id, (err, items) => {
+    res.render('edit.ejs', { beaches: items });
+  });
+});
+
+//* created route
+app.post('/', (req, res) => {
+Beaches.create(req.body, (error, createdBeach) => {
+    res.redirect('/beaches');
+  })
+})
+
+//*remove route
+app.delete('/:id', (req, res) => {
+Beaches.findByIdAndRemove(req.params.id, (err, data) => {
+  res.redirect('/beaches');
+});
+});
+
+//*edit qty route
+app.put('/:id/qty', (req, res) => {
+  Beaches.findByIdAndUpdate(req.params.id,{$inc: {qty:+1}}, 
+    (err, updatedBeachess) => {
+      res.redirect(`/beaches/${req.params.id}`)
+    });
+});
+
+
+app.put('/:id', (req, res) => {
+Beaches.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBeaches) => {
+  res.redirect(`/beaches/${req.params.id}`)
+});
+})
+
+
+module.exports = router;
 
 
 //listen for requests
