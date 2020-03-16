@@ -42,24 +42,22 @@ router.get('/seed', async (req, res) => {
 })
 
 
-
 //*New route
 router.get('/new', (req, res) => {
-    res.render('new.ejs')
+  res.render('new.ejs')
 })
-
 //*show route
 router.get('/:id', (req, res) => {
-    Beaches.findById(req.params.id, (error, item) => {
-      res.render('show.ejs', { beaches: item })
-    })
+  Beaches.findById(req.params.id, (error, item) => {
+    res.render('show.ejs', { beaches: item })
+  })
 })
-  
+
 //*Index route
 router.get('/', (req, res) => {
-    Beaches.find({}, (error, items) => {
-      res.render('index.ejs', { beaches: items })
-    })
+  Beaches.find({}, (error, items) => {
+    res.render('index.ejs', { beaches: items })
+  })
 }) 
 
 // *edit route
@@ -68,30 +66,28 @@ router.get('/:id/edit', (req, res) => {
       res.render('edit.ejs', { beaches: items });
     });
 });
-
 //* created route
 router.post('/', (req, res) => {
   Beaches.create(req.body, (error, createdBeach) => {
       res.redirect('/beaches');
     })
 })
-
 //*remove route
 router.delete('/:id', (req, res) => {
   Beaches.findByIdAndRemove(req.params.id, (err, data) => {
     res.redirect('/beaches');
   });
 });
-
 //*edit qty route
 router.put('/:id/qty', (req, res) => {
-    Beaches.findByIdAndUpdate(req.params.id,{$inc: {qty:+1}}, 
-      (err, updatedBeachess) => {
-        res.redirect(`/beaches/${req.params.id}`)
-      });
+  Beaches.findByIdAndUpdate(req.params.id,{$inc: {qty:+1}}, 
+    (err, updatedBeachess) => {
+      res.redirect(`/beaches/${req.params.id}`)
+    });
 });
 
 
+//*update route
 router.put('/:id', (req, res) => {
   Beaches.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBeaches) => {
     res.redirect(`/beaches/${req.params.id}`)
@@ -99,8 +95,12 @@ router.put('/:id', (req, res) => {
 })
 
 
-module.exports = router;
 
+
+
+
+
+module.exports = router;
 
 
 //!! end rewind heree!!!!!!!!!!!!!!!!
