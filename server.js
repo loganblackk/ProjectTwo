@@ -10,7 +10,7 @@ app.use(methodOverride('_method'));
 
 
 const beachesController = require('./controllers/beachesController.js')
-app.use(beachesController)
+app.use('/beaches', beachesController)
 
 
 const dbupdateobject = {
@@ -37,9 +37,9 @@ app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`)})
 
   
-// mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
-//   console.log('The connection with mongod is established')
-// })
+mongoose.connect('mongodb://localhost:27017/beaches', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
+  console.log('The connection with mongod is established')
+})
 
 
 
