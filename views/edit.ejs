@@ -14,12 +14,15 @@
       <form action="/beaches/<%=beaches.id%>?_method=PUT" method="POST">
   
         Name: <input type="text" name="name" value="<%=beaches.name%>" /><br />
+        Image: <input type="url" name="img" id="img"  placeholder="Insert image URL here" /><br>
         Location: <input type="text" name="location" value="<%=beaches.location%>"/><br />
         Description: <input type="text" name="description" value="<%=beaches.description%>" /><br />
         Temp: <input type="number" name="temp" value="<%=beaches.temp%>" /><br />
         Number of People: <input type="number" name="qty" value="<%=beaches.qty%>" /><br />
         <input type="submit" name="" value="Submit Changes" />
       </form>
+
+
     </div>
   </body>
   
