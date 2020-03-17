@@ -11,7 +11,7 @@ router.get('/seed', async (req, res) => {
       name: 'Fiji',
       location: 'A country in Oceania in the South Pacific',
       description: 'Fiji comprises an archipelago of more than 332 islands, 110 of which are permanently inhabited. Fiji is located about two-thirds of the way from Hawaii to New Zealand, and immediate neighbors include Vanuatu, Tonga, and Samoa.',
-      img: 'https://imgur.com/x0qmF8L.jpg',
+      img: 'https://imgur.com/jPF8IjW.jpg',
       temp: '80.5',
       qty: 905502
     },
